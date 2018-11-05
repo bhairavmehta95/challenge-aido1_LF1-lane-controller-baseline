@@ -76,13 +76,13 @@ class lane_controller(object):
             for i in range(1, self.time_delay):
                 self.arr_delay.append([0, 0, 0, 0, 0, 0, 0])
 
-        rospy.loginfo("[%s] Initialized " %(rospy.get_name()))
-        rospy.loginfo("\n\n\n\n\nREADY FOR EXERCISE " + "AIDO SUBMISSION" + "\n\n\n\n\n")
+        print("[%s] Initialized " %(rospy.get_name()))
+        print("\n\n\n\n\nREADY FOR EXERCISE " + "AIDO SUBMISSION" + "\n\n\n\n\n")
 
     def cbStopLine(self, msg):
         if msg.data and self.measure_time:
             tracktime = self.getCurrentMillis() - self.start_time
-            rospy.loginfo("\n\n\n\n\nTRACK TOOK " + str(tracktime/1000.0) + " seconds" + "\n\n\n\n\n")
+            print("\n\n\n\n\nTRACK TOOK " + str(tracktime/1000.0) + " seconds" + "\n\n\n\n\n")
             self.measure_time = False
             self.operating = False
             # Send stop command
@@ -147,7 +147,7 @@ class lane_controller(object):
             omega_out = -1 * self.omega_sat
 
         # Print out infos
-        rospy.loginfo("Omega: " + str(omega_out) + "    V: " + str(v_out) + "    Err: " + str(d_est - d_ref))
+        print("Omega: " + str(omega_out) + "    V: " + str(v_out) + "    Err: " + str(d_est - d_ref))
 
         # Create message and publish
         car_control_msg = Twist2DStamped()
@@ -173,7 +173,7 @@ class lane_controller(object):
 
 
     def custom_shutdown(self):
-        rospy.loginfo("[%s] Shutting down..." %self.node_name)
+        print("[%s] Shutting down..." %self.node_name)
 
         # Stop listening
         self.sub_lane_reading.unregister()
@@ -184,7 +184,7 @@ class lane_controller(object):
         car_control_msg.omega = 0.0
         self.publishCmd(car_control_msg)
         rospy.sleep(0.5) #To make sure that it gets published.
-        rospy.loginfo("[%s] Shutdown" %self.node_name)
+        print("[%s] Shutdown" %self.node_name)
 
 
     def publishCmd(self, car_cmd_msg):

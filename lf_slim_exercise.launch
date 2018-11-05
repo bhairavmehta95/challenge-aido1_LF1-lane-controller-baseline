@@ -13,7 +13,7 @@
     <arg name="/lane_following/lane_filter" default="true"/>
     <arg name="/lane_following/ground_projection" default="true"/>
     <arg name="/lane_following/lane_controller" default="true"/>
-    <!-- <arg name="/lane_following/lane_exercise_controller" default="true"/> -->
+    <arg name="/lane_following/lane_exercise_controller" default="true"/>
 
 
     <arg name="inverse_kinematics" default="true"/>
@@ -67,7 +67,7 @@
             </group>
 
             <!-- Exercise lane controller -->
-            <!-- <group if="$(arg /lane_following/lane_exercise_controller)">
+            <group if="$(arg /lane_following/lane_exercise_controller)">
                 <remap from="lane_exercise_controller_node/lane_pose" to="lane_filter_node/lane_pose"/>
                 <remap from="lane_exercise_controller_node/wheels_cmd_executed" to="wheels_driver_node/wheels_cmd_executed" />
                 <remap from="lane_exercise_controller_node/actuator_limits" to="inverse_kinematics_node/actuator_limits" />
@@ -76,10 +76,10 @@
                     <arg name="veh" value="$(arg veh)"/>
                     <arg name="config" value="$(arg config)"/>
                     <arg name="param_file_name" value="$(arg param_file_name)"/>
-                    <arg name="/lane_following/lane_controller" default="false"/>
-                    <arg name="/lane_following/lane_exercise_controller" default="true"/>
+                    <!-- <arg name="/lane_following/lane_controller" default="false"/>
+                    <arg name="/lane_following/lane_exercise_controller" default="true"/> -->
                 </include>
-            </group> -->
+            </group>
 
             <!-- Inverse Kinematic Node -->
             <group if="$(arg inverse_kinematics)">
